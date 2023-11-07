@@ -11,7 +11,7 @@ public class syMysteryBoxes {
 		int mysteryBoxType = scan.nextInt();
 		
 		if (mysteryBoxType != 1 && mysteryBoxType != 2) {
-			System.err.println("Invalid Entry");
+			System.err.println("Sorry, you have entered an invalid number");
 		} else {
 			int rdm = random.nextInt(10);
 			String prize = "";
