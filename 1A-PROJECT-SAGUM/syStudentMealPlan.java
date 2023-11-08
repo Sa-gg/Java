@@ -10,7 +10,6 @@ public class syStudentMealPlan {
 		System.out.print("Enter Queue Number: ");
 		int qNum = scan.nextInt();
 		
-//		MA GENRERATE NISA RANDOM NUMBERS (0-2) 
 		int randomPrize = random.nextInt(3); 
 		int randomCashGift = random.nextInt(3);
 		
