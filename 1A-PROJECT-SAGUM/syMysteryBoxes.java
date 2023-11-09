@@ -17,6 +17,7 @@ public class syMysteryBoxes {
 			String prize = "";
 			double mysteryBoxPrice = 0;
 			double price = 0;
+			int max = 1;
 			
 			if (mysteryBoxType == 1) {
 				mysteryBoxPrice = 8000;
@@ -33,6 +34,7 @@ public class syMysteryBoxes {
 				case 8: prize = "Perfume"; price = 11000; break;
 				case 9: prize = "Make Up"; price = 17000; break;
 				}
+				max = (int) (50000 / price);
 			}  else if (mysteryBoxType == 2) {
 				mysteryBoxPrice = 5000;
 
@@ -48,10 +50,15 @@ public class syMysteryBoxes {
 				case 8: prize = "Gaming Chair"; price = 7000; break;
 				case 9: prize = "SSD Hard Disk"; price = 9000;
 				}
-				
+				max = (int) (30000 / price);
 			}	
-			System.out.println("You got a " + prize.toUpperCase());
-			System.out.println("Profit: Php "+ (price - mysteryBoxPrice)); 
+			
+			int min = 1;
+			int randomQuan = random.nextInt(max - min) + min;
+			double profit = (price * randomQuan) - mysteryBoxPrice;
+			
+			System.out.println("You got " + (randomQuan == 1 ? "a " : randomQuan + " ") + prize.toUpperCase());
+			System.out.println("Profit: Php "+ profit); 
 		}
 	} 
 }
@@ -62,4 +69,3 @@ public class syMysteryBoxes {
 //	GAYUMA, JEREMIAH
 //	GENOLOS, JHAMELA NICOLE
 //	GUANZON, JURRIEL
-
