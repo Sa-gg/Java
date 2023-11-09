@@ -52,9 +52,8 @@ public class syMysteryBoxes {
 				}
 				max = (int) (30000 / price);
 			}	
-			
-			int min = 1;
-			int randomQuan = random.nextInt(max - min) + min;
+	
+			int randomQuan = random.nextInt(max) + 1;
 			double profit = (price * randomQuan) - mysteryBoxPrice;
 			
 			System.out.println("You got " + (randomQuan == 1 ? "a " : randomQuan + " ") + prize.toUpperCase());
