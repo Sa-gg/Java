@@ -74,11 +74,9 @@ public class syStudentMealPlan {
 		System.out.print("Quantity: ");
 		int quantity = scan.nextInt();
 		
-		if ((order <= 0 && order >= 11) || (quantity <= 0)) {
-			System.err.println("Invalid Entry");
-		} else {
-			double total = 0, remainingCashGift = 0;
+		if ((order >= 1 && order <= 10) && (quantity >= 1))  {
 			
+			double total = 0, remainingCashGift = 0;
 			switch (order) {
 			case 1: total = quantity * 109.99; break;
 			case 2: total = quantity * 240.99; break;
@@ -109,7 +107,11 @@ public class syStudentMealPlan {
 			if (randomPrize == 2) {
 				System.out.println("Total Remaining Cash Gift: Php " + String.format("%.2f", remainingCashGift));
 			}
+			
+		} else {
+			System.err.println("Invalid Entry");
 		}
+		
 
 	}	
 }
