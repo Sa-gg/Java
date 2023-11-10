@@ -10,18 +10,16 @@ public class syMysteryBoxes {
 		System.out.print("Enter 1 or 2 to choose the type of mystery boxes: ");
 		int mysteryBoxType = scan.nextInt();
 		
-		if (mysteryBoxType != 1 && mysteryBoxType != 2) {
-			System.err.println("Sorry, you have entered an invalid number");
-		} else {
+		if (mysteryBoxType == 1 || mysteryBoxType == 2) {
 			int rdm = random.nextInt(10);
-			String prize = "";
 			double mysteryBoxPrice = 0;
+			String prize = ""; 
 			double price = 0;
 			int max = 1;
 			
 			if (mysteryBoxType == 1) {
-				mysteryBoxPrice = 8000;
 				
+				mysteryBoxPrice = 8000;
 				switch (rdm) {
 				case 0: prize = "Diamond Necklace"; price = 20000; break;
 				case 1: prize = "Watch"; price = 15000; break;
@@ -35,9 +33,10 @@ public class syMysteryBoxes {
 				case 9: prize = "Make Up"; price = 17000; break;
 				}
 				max = (int) (50000 / price);
+				
 			}  else if (mysteryBoxType == 2) {
+				
 				mysteryBoxPrice = 5000;
-
 				switch (rdm) {
 				case 0: prize = "Mobile Phone"; price = 10000; break;
 				case 1: prize = "Gaming Credits"; price = 9000; break;
@@ -51,13 +50,23 @@ public class syMysteryBoxes {
 				case 9: prize = "SSD Hard Disk"; price = 9000;
 				}
 				max = (int) (30000 / price);
-			}	
-	
-			int randomQuan = random.nextInt(max) + 1;
-			double profit = (price * randomQuan) - mysteryBoxPrice;
+				
+		} else {
+			System.err.println("Sorry, you have entered an invalid number");
+		}
+		
+		int randomQuan = random.nextInt(max) + 1;
+		double profit = (price * randomQuan) - mysteryBoxPrice;	
 			
-			System.out.println("You got " + (randomQuan == 1 ? "a " : randomQuan + " ") + prize.toUpperCase());
-			System.out.println("Profit: Php "+ profit); 
+		
+		if (randomQuan == 1) {
+			System.out.println("You got a " + prize.toUpperCase());
+		} else {
+			System.out.println("You got " + randomQuan + " " + prize.toUpperCase());
+		}
+		
+		System.out.println("Profit: Php " + profit);
+		
 		}
 	} 
 }
@@ -68,3 +77,4 @@ public class syMysteryBoxes {
 //	GAYUMA, JEREMIAH
 //	GENOLOS, JHAMELA NICOLE
 //	GUANZON, JURRIEL
+
