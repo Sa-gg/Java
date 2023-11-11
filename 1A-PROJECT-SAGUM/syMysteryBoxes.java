@@ -32,7 +32,7 @@ public class syMysteryBoxes {
 				case 8: prize = "Perfume"; price = 11000; break;
 				case 9: prize = "Make Up"; price = 17000; break;
 				}
-				max = (int) (50000 / price);
+				max = (int) (mysteryBoxPrice / price);
 				
 			}  else if (mysteryBoxType == 2) {
 				
@@ -49,7 +49,7 @@ public class syMysteryBoxes {
 				case 8: prize = "Gaming Chair"; price = 7000; break;
 				case 9: prize = "SSD Hard Disk"; price = 9000;
 				}
-				max = (int) (30000 / price);
+				max = (int) (mysteryBoxPrice / price);
 				
 		} else {
 			System.err.println("Sorry, you have entered an invalid number");
