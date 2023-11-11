@@ -20,17 +20,17 @@ public class syStudentMealPlan {
 		case 0: prize = "50% discounts on all meals"; break;
 		case 1: prize = "Buy 1 take 1 on all meals. "; break;
 		case 2: switch (randomCashGift) {
-			case 0: cashGift = 300; break;
-			case 1: cashGift = 500; break;
-			case 2: cashGift = 1000; break;
-			}
-			prize = "20% discounts on all meals + a " + cashGift + " cash gift."; break;
+				case 0: cashGift = 300; break;
+				case 1: cashGift = 500; break;
+				case 2: cashGift = 1000; break;
+				}
+				prize = "20% discounts on all meals + a " + cashGift + " cash gift."; break;
 		}
 		
 		if (qNum <= 100) {
-			System.out.print("Congratulations! You won " + prize);
+			System.out.println("Congratulations! You won " + prize);
 		} else {
-			System.out.print("Sorry you are not eligible for the raffle.");
+			System.out.println("Sorry you are not eligible for the raffle.");
 		}
 		
 //		MENU LIST
