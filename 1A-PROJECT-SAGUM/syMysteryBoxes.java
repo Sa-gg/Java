@@ -49,27 +49,24 @@ public class syMysteryBoxes {
 				case 8: prize = "Gaming Chair"; price = 7000; break;
 				case 9: prize = "SSD Hard Disk"; price = 9000;
 				}
-				max = (int) (30000 / price);
+				max = (int) (30000 / price);	
+			}	
+			
+			int randomQuan = random.nextInt(max) + 1;
+			double profit = (price * randomQuan) - mysteryBoxPrice;	
+			
+			if (randomQuan == 1) {
+				System.out.println("You got a " + prize.toUpperCase());
+			} else {
+				System.out.println("You got (" + randomQuan + ") " + prize.toUpperCase());
+			}
+			System.out.println("Profit: Php " + profit);
 				
 		} else {
 			System.err.println("Sorry, you have entered an invalid number");
 		}
-		
-		int randomQuan = random.nextInt(max) + 1;
-		double profit = (price * randomQuan) - mysteryBoxPrice;	
-			
-		
-		if (randomQuan == 1) {
-			System.out.println("You got a " + prize.toUpperCase());
-		} else {
-			System.out.println("You got " + randomQuan + " " + prize.toUpperCase());
-		}
-		
-		System.out.println("Profit: Php " + profit);
-		
-		}
-	} 
-}
+	}
+} 
 
 //LEADER: SAGUM, PATRICK
 //MEMBERS: 
