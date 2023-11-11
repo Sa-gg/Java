@@ -14,7 +14,7 @@ public class syStudentMealPlan {
 		int randomCashGift = random.nextInt(3);
 		
 		String prize = ""; 
-		double cashGift = 0;
+		int cashGift = 0;
 		
 		switch (randomPrize) {
 		case 0: prize = "50% discounts on all meals"; break;
