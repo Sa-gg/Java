@@ -103,9 +103,9 @@ public class syStudentMealPlan {
 			}
 			
 			System.out.println("Number of Meals to be Served: " + quantity);
-			System.out.println("Total Amount to Pay: " + "Php " + String.format("%.2f", total));
+			System.out.println("Total Amount to Pay: " + "Php " + String.format("%,.2f", total));
 			if (randomPrize == 2) {
-				System.out.println("Total Remaining Cash Gift: Php " + String.format("%.2f", remainingCashGift));
+				System.out.println("Total Remaining Cash Gift: Php " + String.format("%,.2f", remainingCashGift));
 			}
 			
 		} else {
