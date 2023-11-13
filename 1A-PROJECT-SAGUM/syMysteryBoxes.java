@@ -60,7 +60,7 @@ public class syMysteryBoxes {
 			} else {
 				System.out.println("You got (" + randomQuan + ") " + prize.toUpperCase());
 			}
-			System.out.println("Profit: Php " + profit);
+			System.out.println("Profit: Php " + String.format("%,.2f", profit));
 				
 		} else {
 			System.err.println("Sorry, you have entered an invalid number");
