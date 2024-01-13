@@ -203,10 +203,6 @@ public class SyPlaylist {
 	}
 	
 	private static int[] generateUniqueRandomNumbers(int count, int length) {
-		if (count > (length + 1)) {
-            throw new IllegalArgumentException("Cannot generate more unique numbers than the range allows.");
-        }
-		
 		int[] uniqueRandomNumbers = new int[count];
 		
 		for (int i = 0; i < count; i++) {
