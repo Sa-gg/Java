@@ -189,7 +189,7 @@ public class SyPlaylist {
 	}
 	
 	private static void displayPlaylist(String[][] playlist) {
-		System.out.println(String.format("| %-33s | %-43s |   %10s    |", "Song Title", "Artist(s)", "Duration"));
+		System.out.println(String.format("| %-34s | %-43s |   %10s    |", "Song Title", "Artist(s)", "Duration"));
 		for (int i = 0; i < playlist.length; i++) {
 			formatPlaylist(playlist[i][0], playlist[i][1], playlist[i][2]);
 		}
@@ -197,7 +197,7 @@ public class SyPlaylist {
 	
 	
 	private static void formatPlaylist(String title, String artist, String duration) {
-		String formattedCombo = String.format("| %-33s | %-43s | %10s      |", title, artist, duration);
+		String formattedCombo = String.format("| %-34s | %-43s | %10s      |", title, artist, duration);
 		System.out.println("-----------------------------------------------------------------------------------------------------");
 		System.out.println(formattedCombo);
 	}
