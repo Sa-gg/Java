@@ -1,6 +1,4 @@
-package endtermProject;
 import java.util.*;
-
 
 public class SyPlaylist {
 	public static void main(String[] args) {
