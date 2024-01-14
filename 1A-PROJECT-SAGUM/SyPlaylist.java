@@ -162,7 +162,7 @@ public class SyPlaylist {
 				customPlaylist[i][2] = storeCustomPlaylist[i][2];
 			}
 			
-			
+			System.out.println();
 			System.out.println("Playlist Name: " + playlistName);
 			displaySongs(customPlaylist);
 			System.out.println("Total Duration (Minutes): " + totalDuration(customPlaylist));	
