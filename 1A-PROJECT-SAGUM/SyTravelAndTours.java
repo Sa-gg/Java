@@ -1,3 +1,4 @@
+package endtermProject;
 import java.util.*;
 
 public class SyTravelAndTours {
@@ -93,6 +94,7 @@ public class SyTravelAndTours {
 		System.out.println("Total Rental Cost: " + totalRentalCost);
 		System.out.println("Insurance Cost: " + insuranceCost);
 		System.out.println("Contribution of Each Student: " + contribution);
+		System.out.println("Total Expenses: " + totalExpenses);
 		System.out.println("Remaining Amount to Pay (Group): " + remAmount);
 		
 		
