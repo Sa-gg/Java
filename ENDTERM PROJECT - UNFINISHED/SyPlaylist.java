@@ -18,7 +18,6 @@ public class SyPlaylistDraft {
 			playlistType = scan.nextInt();
 		}
 		
-		System.out.println();
 		
 		String [][] playlist = {
 				{"Blinding Lights", "The Weeknd", "3:20"},
@@ -128,6 +127,7 @@ public class SyPlaylistDraft {
 			displayPlaylist(randomPlaylist);
 			
 		} else if (playlistType == 2) {
+			System.out.println();
 			displayPlaylist(numPlaylist);
 			System.out.println();
 			
@@ -145,36 +145,31 @@ public class SyPlaylistDraft {
 					duplicate = false;
 					System.out.print("Please Enter the Desired Song Number to Add [Enter 0 to Finish]: ");
 					songNumber = scan.nextInt();
-	
-					for (int j = 0; j < storeCustomPlaylist.length; j++) {
-						
-						
-						if (songNumber <= 0 || songNumber > playlist.length) {
-							break;
-						}
-						
-						if (storeCustomPlaylist[j][0] != null && storeCustomPlaylist[j][0].equals(playlist[songNumber - 1][0])) {
-							duplicate = true;
-							System.err.println("Song is Already Added in the Playlist. Please Enter Another Song");
-							break;
-						}
+					
+					while (songNumber < 0) {
+						System.err.println("Invalid Input Please Try Again");
+						System.out.print("Please Enter the Desired Song Number to Add [Enter 0 to Finish]: ");
+						songNumber = scan.nextInt();
 					}
 					
+					while (songNumber > playlist.length) {
+						System.err.println("Maximum Playlist Count is 50. Please Try Again");
+						System.out.print("Please Enter the Desired Song Number to Add [Enter 0 to Finish]: ");
+						songNumber = scan.nextInt();
+					}
 					
+					if (songNumber == 0) {break;}
+
+					for (int j = 0; j < storeCustomPlaylist.length; j++) {
+					    if (storeCustomPlaylist[j][0] != null && storeCustomPlaylist[j][0].equals(playlist[songNumber - 1][0])) {
+					        duplicate = true;
+					        System.err.println("Song is Already Added in the Playlist. Please Enter Another Song");
+					        break;
+					    }
+					}
+
 				} while (duplicate == true);
 							
-							
-				while (songNumber < 0) {
-					System.err.println("Invalid Input Please Try Again");
-					System.out.print("Please Enter the Desired Song Number to Add [Enter 0 to Finish]: ");
-					songNumber = scan.nextInt();
-				}
-				
-				while (songNumber > playlist.length) {
-					System.err.println("Maximum Playlist Count is 50. Please Try Again");
-					System.out.print("Please Enter the Desired Song Number to Add [Enter 0 to Finish]: ");
-					songNumber = scan.nextInt();
-				}
 							
 				if (songNumber == 0) {break;}
 				
