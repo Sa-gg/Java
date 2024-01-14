@@ -1,4 +1,3 @@
-package endtermProject;
 import java.util.*;
 
 public class SyTravelAndTours {
