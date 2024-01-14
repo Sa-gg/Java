@@ -1,6 +1,7 @@
-import java.util.*;
+import java.util.Random;
+import java.util.Scanner;
 
-public class SyPlaylist {
+public class SyPlaylistDraft {
 	static Scanner scan = new Scanner(System.in);
 	static Random random = new Random();
 	public static void main(String[] args) {
@@ -109,7 +110,7 @@ public class SyPlaylist {
 			}
 			
 			System.out.println("\nPlaylist Name: " + playlistName);
-			displayPlaylist(randomPlaylist);
+	
 				
 			int minutes = 0;
 			int seconds = 0;
@@ -124,6 +125,7 @@ public class SyPlaylist {
 			seconds = seconds % 60;
 			
 			System.out.println("Total Duration (Minutes): "+(minutes + addMin) + ":" + seconds);
+			displayPlaylist(randomPlaylist);
 			
 		} else if (playlistType == 2) {
 			displayPlaylist(numPlaylist);
@@ -134,10 +136,34 @@ public class SyPlaylist {
 			
 			int songCount = 0;
 			
-			for (int i = 0; i < playlist.length; i++) {		
-				System.out.print("Please Enter the Desired Song Number to Add [Enter 0 to Finish]: ");
-				int songNumber = scan.nextInt();
+			for (int i = 0; i < storeCustomPlaylist.length; i++) {		
 				
+				int songNumber;
+				boolean duplicate;				
+				
+				do {				
+					duplicate = false;
+					System.out.print("Please Enter the Desired Song Number to Add [Enter 0 to Finish]: ");
+					songNumber = scan.nextInt();
+	
+					for (int j = 0; j < storeCustomPlaylist.length; j++) {
+						
+						
+						if (songNumber <= 0 || songNumber > playlist.length) {
+							break;
+						}
+						
+						if (storeCustomPlaylist[j][0] != null && storeCustomPlaylist[j][0].equals(playlist[songNumber - 1][0])) {
+							duplicate = true;
+							System.err.println("Song is Already Added in the Playlist. Please Enter Another Song");
+							break;
+						}
+					}
+					
+					
+				} while (duplicate == true);
+							
+							
 				while (songNumber < 0) {
 					System.err.println("Invalid Input Please Try Again");
 					System.out.print("Please Enter the Desired Song Number to Add [Enter 0 to Finish]: ");
@@ -149,10 +175,10 @@ public class SyPlaylist {
 					System.out.print("Please Enter the Desired Song Number to Add [Enter 0 to Finish]: ");
 					songNumber = scan.nextInt();
 				}
-				
+							
 				if (songNumber == 0) {break;}
 				
-				storeCustomPlaylist[i][0] = String.valueOf((i + 1)) + ". " + playlist[songNumber - 1][0];
+				storeCustomPlaylist[i][0] = playlist[songNumber - 1][0];
 				storeCustomPlaylist[i][1] = playlist[songNumber - 1][1];
 				storeCustomPlaylist[i][2] = playlist[songNumber - 1][2];
 				
@@ -161,13 +187,12 @@ public class SyPlaylist {
 			
 			String[][] customPlaylist = new String[songCount][3];	
 			for (int i = 0; i < songCount; i++) {
-				customPlaylist[i][0] = storeCustomPlaylist[i][0];
+				customPlaylist[i][0] = String.valueOf((i + 1)) + ". " + storeCustomPlaylist[i][0];
 				customPlaylist[i][1] = storeCustomPlaylist[i][1];
 				customPlaylist[i][2] = storeCustomPlaylist[i][2];
 			}
 			
 			System.out.println("\nPlaylist Name: " + playlistName);
-			displayPlaylist(customPlaylist);
 			
 			int minutes = 0;
 			int seconds = 0;
@@ -182,6 +207,8 @@ public class SyPlaylist {
 			seconds = seconds % 60;
 			
 			System.out.println("Total Duration (Minutes): " + (minutes + addMin) + ":" + seconds);
+			
+			displayPlaylist(customPlaylist);
 			
 		} 
 		
@@ -231,3 +258,5 @@ public class SyPlaylist {
 		
 	}
 }
+
+
