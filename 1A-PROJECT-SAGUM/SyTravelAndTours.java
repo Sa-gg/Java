@@ -1,15 +1,9 @@
 import java.util.*;
 
 public class SyTravelAndTours {
-	static Scanner scan = new Scanner(System.in);
-	static Random random = new Random();
-	public static void main(String[] args) {
-		
-		displayLocation();
-		System.out.println();
-		
-
-		String[][] distances = {
+	public static void main(String[] args) {	
+		Scanner scan = new Scanner(System.in);
+		String[][] locations = {
 				{"163", "s",},
 				{"99.4", "n",},
 				{"107", "s",},
@@ -21,35 +15,57 @@ public class SyTravelAndTours {
 				{"183", "s",},
 				{"23", "n",}
 		};
+		int[] chosenLocations = new int[5];
 		
-		int[] chosenLocation = new int[5];
-		for (int i = 0; i < 5; i++) {
-			System.out.print("Enter Location " + (i + 1) + ": ");
-			int loc = scan.nextInt();
+		displayLocation();
+		System.out.println();
+		
+		for (int i = 0; i < chosenLocations.length; i ++) {
 			
+			boolean duplicate;
+			int loc;
 			
+			do {
+				duplicate = false;
+				System.out.print("Enter Location " + (i + 1) + ": ");
+				loc = scan.nextInt();
+				
+				while (loc <= 0 || loc > locations.length) {
+					System.err.println("Please choose a number between 1 and " + locations.length);
+					System.out.print("Enter Location " + (i + 1) + ": ");
+					loc = scan.nextInt();
+				}
+				
+				for (int j = 0; j < chosenLocations.length; j++) {		
+					if (chosenLocations[j] != 0 && chosenLocations[j] == loc) {
+						System.err.println("This location has already been selected. Please choose a different one.");
+						duplicate = true;
+						break;
+					}	
+					
+					
+				}
+				
+			} while (duplicate);
 			
-			
-			chosenLocation[i] = loc - 1;
-			
-			
+			chosenLocations[i] = loc;		
 		}
 		
-		double totalDistance = 0;		
-		totalDistance += Double.parseDouble(distances[(chosenLocation[0])][0]);
+		for (int i = 0; i < chosenLocations.length; i++) { 
+			chosenLocations[i] = (chosenLocations[i] - 1); 
+		}
+	
+		double totalDistance = 0;	
 		
-		for (int i = 1; i < chosenLocation.length; i++) {
-			
-			String previousDirection = distances[(chosenLocation[i-1])][1];
-			String currentDirection = distances[(chosenLocation[i])][1];
-			
-			Double previousDistance = Double.parseDouble(distances[(chosenLocation[i - 1])][0]);
-			Double currentDistance = Double.parseDouble(distances[(chosenLocation[i ])][0]);
-			
-//			CHECK IF SAME DIRECTION
-			if (previousDirection == currentDirection) {
+		totalDistance += Double.parseDouble(locations[(chosenLocations[0])][0]);
+		for (int i = 1; i < chosenLocations.length; i++) {
+			String previousDirection = locations[(chosenLocations[i-1])][1];
+			String currentDirection = locations[(chosenLocations[i])][1];			
+			Double previousDistance = Double.parseDouble(locations[(chosenLocations[i - 1])][0]);
+			Double currentDistance = Double.parseDouble(locations[(chosenLocations[i])][0]);
 
-//				CHECK IF FORWARD OR BACAKWARDS
+			if (previousDirection == currentDirection) {
+				
 				if (previousDistance < currentDistance) {
 					totalDistance += (currentDistance - previousDistance);
 				} else {
@@ -61,31 +77,51 @@ public class SyTravelAndTours {
 			}
 			
 		}
-		
-		totalDistance += Double.parseDouble(distances[(chosenLocation[4])][0]);
+		totalDistance += Double.parseDouble(locations[(chosenLocations[4])][0]);
 		
 		String[] vehicles = { "Toyota Hi Ace", "Mitsubishi L300", "Suzuki APV", "Foton Transvan", "Nissan Vanette",
 	             "Mazda MPV", "Hyundai H-1" };
-	    double[] fuelCapacities = { 70, 47, 46, 65, 55, 70, 65 };
 	    double[] fuelConsumptions = { 8.0, 9.0, 8.9, 10.0, 8.5, 8.6, 7.6 };
 	    double[] rentalFees = { 3000.0, 3600.0, 4000.0, 4400.0, 3000.0, 3600.0, 3200.0 };
 		
 		displayVehicle();
 		System.out.println();
+
+		int chosenVehicle, hireDriver;
+		
 		System.out.print("Pick A Vehicle: ");
-		int chosenVehicle = scan.nextInt(); 
+		chosenVehicle = scan.nextInt(); 
+		
+		while (chosenVehicle < 1 || chosenVehicle > vehicles.length) {
+			System.err.println("Please pick a number between 1 and " + vehicles.length);
+			System.out.print("Pick A Vehicle: ");
+			chosenVehicle = scan.nextInt(); 
+		}
 		
 		System.out.print(" [1] - Yes\n [2] - No\nHire A Driver?: ");
-		int hireDriver = scan.nextInt();
-		double driverFee = 0;		
-		if (hireDriver == 1) {driverFee = 2000;}
+		hireDriver = scan.nextInt();
 		
+		while (hireDriver != 1 && hireDriver != 2) {
+			System.err.println("Please choose a number between 1 and 2");
+			System.out.print(" [1] - Yes\n [2] - No\nHire A Driver?: ");
+			hireDriver = scan.nextInt();
+		}
+			
 		System.out.print("Days of Travel: ");
 		int days = scan.nextInt();
+		
+		while (days < 1) {
+			System.err.println("Invalid Entry, Minimum Days of travel must be one. Please try again");
+			System.out.print("Days of Travel: ");
+			days = scan.nextInt();
+		}
 		
 		System.out.print("Fuel Price Per Liter: ");
  		double fuelPrice = scan.nextDouble(); 
  		
+ 		scan.close();
+ 		
+ 		double driverFee = hireDriver == 1 ? 2000 : 0;	
  		double deposit = 15000;
  		
  		double totalFuelConsumption = (fuelConsumptions[chosenVehicle - 1] / 100) * totalDistance;
@@ -94,22 +130,25 @@ public class SyTravelAndTours {
  		double insuranceCost =  totalRentalCost * .13;
  		double studentsAllowance = 300 * 10 * days;
  		
- 		double totalExpenses = deposit + (driverFee * days) + totalFuelCost + totalRentalCost + insuranceCost;
+ 		double totalExpenses = (driverFee * days) + totalFuelCost + totalRentalCost + insuranceCost;
  		double contribution = (totalExpenses - studentsAllowance) / 10;
  		double remAmount = totalExpenses - deposit - studentsAllowance;
  		
  		System.out.println();
-		System.out.println("Total Distance Travelled: " + totalDistance + "km");
-		System.out.println("Total Fuel Consumption: " + totalFuelConsumption);
-		System.out.println("Total Fuel Cost: " + totalFuelCost);
-		System.out.println("Total Rental Cost: " + totalRentalCost);
-		System.out.println("Insurance Cost: " + insuranceCost);
-		System.out.println("Contribution of Each Student: " + contribution);
-		System.out.println("Total Expenses: " + totalExpenses);
-		System.out.println("Remaining Amount to Pay (Group): " + remAmount);
+		System.out.printf("Total Distance Travelled: %,.2fkm%n", totalDistance);
+		System.out.printf("Total Fuel Consumption: %,.2fL%n", totalFuelConsumption);
+		System.out.printf("Total Fuel Cost: Php %,.2f%n", totalFuelCost);
+		System.out.printf("Total Rental Cost: Php %,.2f%n", totalRentalCost);
+		System.out.printf("Insurance Cost: Php %,.2f%n", insuranceCost);
+		System.out.printf("Students Allowance: Php %,.2f%n", studentsAllowance);
+		System.out.printf("Contribution of Each Student: Php %,.2f%n", contribution);
+		System.out.printf("Total Expenses: Php %,.2f%n", totalExpenses);
 		
-		
-				
+		if (remAmount > 0) {
+			System.out.printf("Remaining Amount to Pay: Php %,.2f", remAmount);
+		} else {
+			System.out.printf("Remaining Amount to Refund: Php %,.2f", (remAmount * -1));
+		}
 	}
 	
 	private static void displayLocation() {
@@ -128,18 +167,26 @@ public class SyTravelAndTours {
 	
 	private static void displayVehicle() {
 		System.out.println("________________________________________________________________________");
-		System.out.println("     Vehicle         Fuel Capacity      Fuel Consumption      Rental Fee");
+		System.out.println("     Vehicle         Fuel Capacity      Fuel Consumption     Rental Fee ");
 		System.out.println("________________________________________________________________________");
-		System.out.println("1. Toyota Hi Ace        70L             8.0L/100km           P3,000.00 ");
-		System.out.println("2. Mitsubishi L300      47L             9.0L/100km           P3,600.00 ");
-		System.out.println("3. Suzuki APV           46L             8.9L/100km           P4,000.00 ");
-		System.out.println("4. Foton Transvan       65L              10L/100km           P4,400.00 ");
-		System.out.println("5. Nissan Vanette       55L             8.5L/100km           P3,000.00 ");
-		System.out.println("6. Mazda MPV            70L             8.6L/100km           P3,600.00 ");
-		System.out.println("7. Hyundai H-1          65L             7.6L/100km           P3,200.00 ");
+		System.out.println("1. Toyota Hi Ace        70L             8.0L/100km           P3,000.00  ");
+		System.out.println("2. Mitsubishi L300      47L             9.0L/100km           P3,600.00  ");
+		System.out.println("3. Suzuki APV           46L             8.9L/100km           P4,000.00  ");
+		System.out.println("4. Foton Transvan       65L              10L/100km           P4,400.00  ");
+		System.out.println("5. Nissan Vanette       55L             8.5L/100km           P3,000.00  ");
+		System.out.println("6. Mazda MPV            70L             8.6L/100km           P3,600.00  ");
+		System.out.println("7. Hyundai H-1          65L             7.6L/100km           P3,200.00  ");
 		System.out.println("________________________________________________________________________");
 	}
 }
 
+/*
+LEADER: SAGUM, PATRICK
+MEMBERS: 
+        AGRIAM, REBEJOE
+        GAYUMA, JEREMIAH
+        GENOLOS, JHAMELA NICOLE
+        GUANZON, JURRIEL
+*/
 
 
