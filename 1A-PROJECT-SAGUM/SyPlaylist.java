@@ -98,7 +98,7 @@ public class SyPlaylist {
 			
 			System.out.println("\nPlaylist Name: " + playlistName);
 			displaySongs(randomPlaylist);
-			System.out.println("Total Duration (Minutes): " + totalDuration(randomPlaylist));
+			System.out.println("Total Duration [minutes]: " + totalDuration(randomPlaylist));
 			
 			
 		} else if (playlistType == 2) {
@@ -165,7 +165,7 @@ public class SyPlaylist {
 			System.out.println();
 			System.out.println("Playlist Name: " + playlistName);
 			displaySongs(customPlaylist);
-			System.out.println("Total Duration (Minutes): " + totalDuration(customPlaylist));	
+			System.out.println("Total Duration [minutes]: " + totalDuration(customPlaylist));	
 		}
 		
 		
@@ -178,7 +178,7 @@ public class SyPlaylist {
 	
 	private static void displaySongs(String[][] tracks) {
 		for (int i = 0; i < tracks.length; i++) {
-			System.out.println(String.valueOf(i + 1) + ". " + tracks[i][0] + " - " + tracks[i][1] + " - (" + tracks[i][2] + ")"  );
+			System.out.println(String.valueOf(i + 1) + ". " + tracks[i][0] + " - " + tracks[i][1] + " - [" + tracks[i][2] + "]"  );
 		}
 	}
 	
