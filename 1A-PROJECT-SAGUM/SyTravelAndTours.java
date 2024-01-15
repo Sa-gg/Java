@@ -26,7 +26,13 @@ public class SyTravelAndTours {
 		for (int i = 0; i < 5; i++) {
 			System.out.print("Enter Location " + (i + 1) + ": ");
 			int loc = scan.nextInt();
+			
+			
+			
+			
 			chosenLocation[i] = loc - 1;
+			
+			
 		}
 		
 		double totalDistance = 0;		
@@ -34,23 +40,29 @@ public class SyTravelAndTours {
 		
 		for (int i = 1; i < chosenLocation.length; i++) {
 			
+			String previousDirection = distances[(chosenLocation[i-1])][1];
+			String currentDirection = distances[(chosenLocation[i])][1];
+			
+			Double previousDistance = Double.parseDouble(distances[(chosenLocation[i - 1])][0]);
+			Double currentDistance = Double.parseDouble(distances[(chosenLocation[i ])][0]);
+			
 //			CHECK IF SAME DIRECTION
-			if (distances[(chosenLocation[i - 1])][1] == distances[(chosenLocation[i])][1]) {
+			if (previousDirection == currentDirection) {
 
 //				CHECK IF FORWARD OR BACAKWARDS
-				if (Double.parseDouble(distances[(chosenLocation[i - 1])][0]) < Double.parseDouble(distances[(chosenLocation[i])][0])) {
-					totalDistance += (Double.parseDouble(distances[(chosenLocation[i])][0]) - Double.parseDouble(distances[(chosenLocation[i - 1])][0]));
+				if (previousDistance < currentDistance) {
+					totalDistance += (currentDistance - previousDistance);
 				} else {
-					totalDistance += (Double.parseDouble(distances[(chosenLocation[i - 1])][0]) - Double.parseDouble(distances[(chosenLocation[i])][0]));
+					totalDistance += (previousDistance - currentDistance);
 				}
 				
 			} else {
-				totalDistance += Double.parseDouble(distances[(chosenLocation[i - 1])][0]);
-				totalDistance += Double.parseDouble(distances[(chosenLocation[i])][0]);		
+				totalDistance += (previousDistance + currentDistance);	
 			}
 			
-			
 		}
+		
+		totalDistance += Double.parseDouble(distances[(chosenLocation[4])][0]);
 		
 		String[] vehicles = { "Toyota Hi Ace", "Mitsubishi L300", "Suzuki APV", "Foton Transvan", "Nissan Vanette",
 	             "Mazda MPV", "Hyundai H-1" };
