@@ -167,11 +167,6 @@ public class SyPlaylist {
 			displaySongs(customPlaylist);
 			System.out.println("Total Duration [minutes]: " + totalDuration(customPlaylist));	
 		}
-		
-		
-		
-		
-		
 		scan.close();
 
 	}
